@@ -8,8 +8,8 @@ const App = () => {
   const [langActive, setLangActive] = useState('en')
   const [targetLang, setTargetLang] = useState('es')
   const [loading, setLoading] = useState(false)
-  const [textToTranslate , setTextToTranslate] = useState('')
-  const [translatedText, setTranslatedText] = useState('')
+  const [textToTranslate , setTextToTranslate] = useState('Hello, how are you?')
+  const [translatedText, setTranslatedText] = useState('Bonjour, comment vas-tu?')
 
 
   const onTextAreaChange = e =>{
