@@ -8,6 +8,11 @@ const InputCard = ({
   targetLang,
   setTargetLang,
   className,
+  //form events
+  textToTranslate,
+  onTextAreaChange,
+  onSubmit,
+  loading,
 }) => {
   return (
     <div
@@ -18,27 +23,30 @@ const InputCard = ({
         setLangActive={setLangActive}
         targetLang={targetLang}
         setTargetLang={setTargetLang}
+        textInput={textToTranslate}
       />
-      <form className="h-full flex flex-col gap-3">
+      <form className="h-full flex flex-col gap-3" onSubmit={onSubmit}>
         <div className="relative h-full">
           <textarea
+            value={textToTranslate}
+            onChange={onTextAreaChange}
             placeholder="Translate here"
             className="w-full bg-transparent border-none focus:outline-none resize-none text-white font-bold h-full"
           ></textarea>
 
           <span className="font-medium text-lightSecondary text-xs absolute right-5 -botton-5">
-            0/500
+            {textToTranslate.length}/500
           </span>
         </div>
 
         <div className="flex justify-between items-center mt-3">
-          <ButtonsFooter />
+          <ButtonsFooter text={textToTranslate} />
           <button
             type="submit"
-            className={`bg-bluePrimary px-5 py-2 rounded-lg flex items-center gap-2 text-sm font-bold`}
+            className={`${loading ? 'bg-blueSecondary' : 'bg-bluePrimary'} px-5 py-2 rounded-lg flex items-center gap-2 text-sm font-bold`}
           >
             <img src={SortAlfa} alt="sortalfa" />
-            Translate
+            {loading ? 'Translating...' : 'Translate' }
           </button>
         </div>
       </form>

@@ -7,6 +7,8 @@ const OutputCard = ({
   targetLang,
   setTargetLang,
   className,
+  //form events
+  translatedText,
 }) => {
   return (
     <div
@@ -19,17 +21,18 @@ const OutputCard = ({
         setTargetLang={setTargetLang}
         isResultTranslate={true}
       />
-      
+
       <form className="h-full flex flex-col gap-3">
         <div className="relative h-full">
           <textarea
             className="w-full bg-transparent border-none focus:outline-none resize-none text-white font-bold h-full"
             disabled
+            value={translatedText}
           ></textarea>
         </div>
 
         <div className="flex justify-between items-center mt-3">
-          <ButtonsFooter />
+          <ButtonsFooter text={translatedText}/>
         </div>
       </form>
     </div>

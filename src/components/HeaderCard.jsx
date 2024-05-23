@@ -1,4 +1,7 @@
+import { franc } from "franc";
+import { HorizontalTop } from "../assets";
 import { languages } from "../helpers/languages";
+import ButtonIcon from "./ButtonIcon";
 
 const HeaderCard = ({
   langActive,
@@ -6,9 +9,20 @@ const HeaderCard = ({
   targetLang,
   setTargetLang,
   isResultTranslate = false,
+  textInput= '',
 }) => {
+
+  const tradeLanguage = () => {
+    setLangActive(targetLang);
+    setTargetLang(langActive);
+  }
+
   const handleDetectLanguage = () => {
-    console.log("Detecting language");
+    if(textInput.length < 1) return;
+    const langCode = franc(textInput);
+    const language = languages.find((lang) => lang.code === langCode);
+    setLangActive(language.code);
+
   };
 
   return (
@@ -29,6 +43,13 @@ const HeaderCard = ({
               {language.name}
             </button>
           ))}
+          <div className="flex justify-end flex-1">
+            <ButtonIcon
+            img={HorizontalTop}
+            alt="trade language"
+            onClick={tradeLanguage}
+            />
+          </div>
         </>
       ) : (
         // INPUT CARD
